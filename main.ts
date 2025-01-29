@@ -1,6 +1,6 @@
 
 import { MongoClient } from "mongodb";
-import {  } from "./types.ts";
+import {  ContactModel} from "./types.ts";
 
 import { fromModeltoContacto} from "./resolvers.ts";
 
@@ -16,7 +16,7 @@ await mongoClient.connect();
 console.info("Connected to MongoDB");
 
 const mongoDB = mongoClient.db("Agenda");
-const ContactosCollection = mongoDB.collection("Contacto");
+const ContactosCollection = mongoDB.collection<ContactModel>("Contacto");
 
 const handler = async (req: Request): Promise<Response> => {
   const method = req.method;
@@ -24,7 +24,9 @@ const handler = async (req: Request): Promise<Response> => {
   const path = url.pathname;
 
   if (method === "GET") {
-    if (path === "/users") {
+    if (path === "/contactos") {
+      const Contactos = await ContactosCollection.find().toArray();
+      return new Response(JSON.stringify(Contactos));
     }
   } else if (method === "POST") {
     if (path === "/user") {
