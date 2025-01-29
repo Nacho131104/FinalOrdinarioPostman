@@ -16,7 +16,7 @@ await mongoClient.connect();
 console.info("Connected to MongoDB");
 
 const mongoDB = mongoClient.db("Agenda");
-const ContactosCollection = mongoDB.collection("Contactos");
+const ContactosCollection = mongoDB.collection<ContactModel>("Contactos");
 
 const handler = async (req: Request): Promise<Response> => {
   const method = req.method;
@@ -25,8 +25,13 @@ const handler = async (req: Request): Promise<Response> => {
 
   if (method === "GET") {
     if (path === "/contactos") {
-      const Contactos = await ContactosCollection.find().toArray();
+      const Contactos = (await ContactosCollection.find().toArray()).map(contacto => ({
+        ...contacto,
+        _id: contacto._id.toString(), // Convierte ObjectId a string
+      }));
+      
       console.log(Contactos);
+      
       return new Response(JSON.stringify(Contactos), {
         status: 200,
         headers: { "Content-Type": "application/json" }

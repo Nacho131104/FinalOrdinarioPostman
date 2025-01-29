@@ -30,3 +30,4 @@ export const fromModeltoContacto =async(Contacto: ContactModel):Promise<Contacto
     }
 
 }
+
