@@ -16,7 +16,7 @@ await mongoClient.connect();
 console.info("Connected to MongoDB");
 
 const mongoDB = mongoClient.db("Agenda");
-const ContactosCollection = mongoDB.collection<ContactModel>("Contacto");
+const ContactosCollection = mongoDB.collection<ContactModel>("Contactos");
 
 const handler = async (req: Request): Promise<Response> => {
   const method = req.method;

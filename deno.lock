@@ -82,6 +82,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
+      "npm:@graphql-tools/utils@9.2.1",
       "npm:mongodb@^6.12.0"
     ]
   }
