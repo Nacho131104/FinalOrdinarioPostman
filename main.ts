@@ -1,8 +1,45 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+//import { MongoClient } from "mongodb";
+import {  } from "./types.ts";
+
+import { fromModeltoContacto} from "./resolvers.ts";
+/*
+const MONGO_URL = Deno.env.get("MONGO_URL");
+
+if (!MONGO_URL) {
+  throw new Error("Please provide a MONGO_URL");
+}s
+
+const mongoClient = new MongoClient(MONGO_URL);
+await mongoClient.connect();
+
+console.info("Connected to MongoDB");
+
+const mongoDB = mongoClient.db("Personas");
+const DinosaursCollection = mongoDB.collection("Persona");
+*/
+const handler = async (req: Request): Promise<Response> => {
+  const method = req.method;
+  const url = new URL(req.url);
+  const path = url.pathname;
+
+  if (method === "GET") {
+    if (path === "/users") {
+    }
+  } else if (method === "POST") {
+    if (path === "/user") {
+      
+    }
+  } else if (method === "PUT") {
+    
+  } else if (method === "DELETE") {
+    
+
+  }
+
+  return new Response("endpoint not found", { status: 404 });
+};
+
+Deno.serve({ port: 3000 }, handler);
+
+
