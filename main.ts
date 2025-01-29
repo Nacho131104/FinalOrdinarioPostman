@@ -1,23 +1,23 @@
 
-//import { MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import {  } from "./types.ts";
 
 import { fromModeltoContacto} from "./resolvers.ts";
-/*
+
 const MONGO_URL = Deno.env.get("MONGO_URL");
 
 if (!MONGO_URL) {
   throw new Error("Please provide a MONGO_URL");
-}s
+}
 
 const mongoClient = new MongoClient(MONGO_URL);
 await mongoClient.connect();
 
 console.info("Connected to MongoDB");
 
-const mongoDB = mongoClient.db("Personas");
-const DinosaursCollection = mongoDB.collection("Persona");
-*/
+const mongoDB = mongoClient.db("Agenda");
+const ContactosCollection = mongoDB.collection("Contacto");
+
 const handler = async (req: Request): Promise<Response> => {
   const method = req.method;
   const url = new URL(req.url);
