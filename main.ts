@@ -33,6 +33,12 @@ const handler = async (req: Request): Promise<Response> => {
       console.log(Contactos);
       
       return new Response(JSON.stringify(Contactos), {status: 200});
+    } else if(path ==="/contacto"){
+      const name = url.searchParams.get("nombreyApellidos");
+      if(!name){throw new Error("Se necesita un nombre")};
+      const contacto = await ContactosCollection.find( (c:ContactModel) => c.nombreYApellidos = name);
+      if(!contacto) throw new Response("Contacto no encontrado");
+      return new Response(JSON.stringify(contacto));
     }
   } else if (method === "POST") {
     if (path === "/user") {
