@@ -32,10 +32,7 @@ const handler = async (req: Request): Promise<Response> => {
       
       console.log(Contactos);
       
-      return new Response(JSON.stringify(Contactos), {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-      });
+      return new Response(JSON.stringify(Contactos), {status: 200});
     }
   } else if (method === "POST") {
     if (path === "/user") {
